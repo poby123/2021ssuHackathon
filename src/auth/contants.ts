@@ -4,7 +4,7 @@ export const sessionConstants = {
     saveUninitialized: false,
 }
 
-export enum Auths {
+export enum RolesEnum {
     NORMAL_USER = 'NORMAL_USER',
     MARKET_USER = 'MARKET_USER',
     GOVERNMENT = 'GOVERNMENT',

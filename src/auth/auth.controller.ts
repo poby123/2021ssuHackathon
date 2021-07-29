@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, Session, UseFilters, UseGuards } from '@nestjs/common';
+import { ViewAuthFilter } from 'src/exception/forbidden-view.filter';
 import { User } from 'src/user/domain/user.entity';
 import { SignupRequestDto } from 'src/user/dto/signupreq.dto';
 import { UserService } from 'src/user/user.service';
@@ -10,12 +11,18 @@ export class AuthController {
     constructor(private readonly userService: UserService) { }
 
     @Get('/signin')
-    getSignin(@Res() res) {
-        res.render('signin');
+    getSignin(@Session() session, @Res() res) {
+        if (session.userId) {
+            res.redirect('/');
+        }
+        else {
+            res.render('signin');
+        }
     }
 
     @Post('/signin')
     @UseGuards(LocalAuthGuard)
+    @UseFilters(ViewAuthFilter)
     postSignin(@Req() req, @Res() res) {
         const { userId, username, points, auth } = req.user;
 

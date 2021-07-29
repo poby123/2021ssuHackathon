@@ -10,7 +10,7 @@ export class SessionGuard implements CanActivate {
         const roles = this.reflector.get<string[]>('roles', context.getHandler());
         const req = context.switchToHttp().getRequest();
         const session = req.session;
-
+        
         if (session && session.auth) {
             return roles.includes(session.auth);
         }

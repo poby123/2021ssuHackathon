@@ -4,16 +4,20 @@ import { User } from 'src/user/domain/user.entity';
 import { SignupRequestDto } from 'src/user/dto/signupreq.dto';
 import { UserService } from 'src/user/user.service';
 import { LocalAuthGuard } from './local-auth.guard';
+import { RolesDefaultRoutes, RolesEnum } from 'src/auth/contants';
 
 @Controller('auth')
 export class AuthController {
 
-    constructor(private readonly userService: UserService) { }
+    constructor(
+        private readonly userService: UserService
+    ) { }
+
 
     @Get('/signin')
-    getSignin(@Session() session, @Res() res) {
-        if (session.userId) {
-            res.redirect('/');
+    async getSignin(@Session() session, @Res() res) {
+        if (session.auth) {
+            res.redirect(RolesDefaultRoutes[session.auth]);
         }
         else {
             res.render('signin');
@@ -24,12 +28,13 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @UseFilters(ViewAuthFilter)
     postSignin(@Req() req, @Res() res) {
-        const { userId, username, points, auth } = req.user;
+        const { userId, username, points, auth, market } = req.user;
 
         req.session.userId = userId;
         req.session.username = username;
         req.session.points = points;
         req.session.auth = auth;
+        req.session.marketId = market.marketId;
 
         res.redirect('/');
     }

@@ -10,3 +10,10 @@ export enum RolesEnum {
     GOVERNMENT = 'GOVERNMENT',
     ADMIN = 'ADMIN'
 }
+
+export const RolesDefaultRoutes = {
+    NORMAL_USER: '/',
+    MARKET_USER: '/market/qr',
+    GOVERNMENT: '/government',
+    ADMIN: '/government',
+}

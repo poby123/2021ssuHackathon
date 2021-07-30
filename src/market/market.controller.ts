@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put, Query, Req, Res, Session, UseGuards, UseFilters } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Query, Req, Res, Session, UseGuards, UseFilters, HttpStatus, HttpException } from '@nestjs/common';
 import { RolesEnum } from 'src/auth/contants';
 import { SessionGuard } from 'src/auth/roles-session.guard';
 import { Roles } from 'src/auth/roles.decorator';
@@ -45,33 +45,18 @@ export class MarketController {
     // @Roles(RolesEnum.MARKET_USER)
     // @UseGuards(SessionGuard)
     async postQR(@Req() req, @Res() res) {
-        // const { marketId } = req.session;
-        const marketId = "1234"
-        const user = await this.userService.findOneWith('userid3');
-        const market = await this.marketService.findOne(marketId);
+        try {
 
-        // console.log('session : ', marketId);
-        // console.log(user);
-        // console.log(market);
+            // const { marketId } = req.session;
+            const marketId = "1234"
+            const user = await this.userService.findOneWith('userid3');
+            const market = await this.marketService.findOne(marketId);
 
-        const record: UserMarket = { user, market }
-        const result = await this.userMarketService.findByUser(user.userId);
+            const updatedMarket = await this.userMarketService.saveRecord2(user, market);
+            await this.marketService.saveMarket(updatedMarket);
 
-        // console.log('findByUser REsult : ', result);
-
-        // entrance
-        if (result === undefined) {
-            await this.userMarketService.saveRecord(record);
-            market.currentNumber = market.currentNumber + 1;
-            await this.marketService.saveMarket(market);
-        }
-
-        // exit
-        else {
-            market.currentNumber = market.currentNumber - 1;
-            result.exitTime = new Date();
-            await this.userMarketService.saveRecord(result);
-            await this.marketService.saveMarket(market);
+        } catch (e) {
+            throw new HttpException("error is occured at /market/qrtest", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

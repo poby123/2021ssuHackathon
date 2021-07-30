@@ -12,8 +12,8 @@ export enum RolesEnum {
 }
 
 export const RolesDefaultRoutes = {
-    NORMAL_USER: '/',
-    MARKET_USER: '/market/qr',
-    GOVERNMENT: '/government',
-    ADMIN: '/government',
+    'NORMAL_USER': '/',
+    'MARKET_USER': '/market/qr',
+    'GOVERNMENT': '/government',
+    'ADMIN': '/government',
 }

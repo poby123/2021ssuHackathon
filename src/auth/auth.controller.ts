@@ -34,7 +34,7 @@ export class AuthController {
         req.session.username = username;
         req.session.points = points;
         req.session.auth = auth;
-        req.session.marketId = market.marketId;
+        req.session.marketId = market && market.marketId;
 
         res.redirect('/');
     }

@@ -18,6 +18,15 @@ export class UserMarketService {
         return this.marketRepository.findOne({ id });
     }
 
+    async findByUser(userId: string) {
+        const result = await this.marketRepository.find({ relations: ["user"] });
+        return result.find((userMarket) => {
+            if (userMarket.user.userId == userId && userMarket.exitTime == null) {
+                return true;
+            }
+        })
+    }
+
 
     async saveRecord(record: UserMarket): Promise<void> {
         await this.marketRepository.save(record);

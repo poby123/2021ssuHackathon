@@ -14,7 +14,7 @@ export class UserService {
   }
 
 
-  async findOne(id: string): Promise<User> {
+  async findOneWith(id: string): Promise<User> {
     const result = await this.userRepository.find({ relations: ["market"] });
     const user = result.find((user: User) => {
       if (user.userId === id) {

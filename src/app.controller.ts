@@ -21,15 +21,6 @@ export class AppController {
     }
   }
 
-  @Get('/markets')
-  @Roles(RolesEnum.NORMAL_USER, RolesEnum.MARKET_USER, RolesEnum.GOVERNMENT, RolesEnum.ADMIN)
-  @UseGuards(SessionGuard)
-  @UseFilters(ViewAuthFilter)
-  getMarkets(@Query('marketId') marketId, @Res() res) {
-    console.log(marketId);
-    res.render('markets', { title: 'TEST TITLE' })
-  }
-
   @Get('/hello')
   getHello(): string {
     return this.appService.getHello();

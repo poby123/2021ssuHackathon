@@ -17,7 +17,7 @@ export class UserMarket {
     @CreateDateColumn()
     entranceTime?: Date
 
-    @CreateDateColumn()
+    @Column({ type: "timestamp", nullable: true })
     exitTime?: Date
 
     @Column({ default: true })

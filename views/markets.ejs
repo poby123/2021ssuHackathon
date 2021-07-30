@@ -1,6 +1,95 @@
 <%-include('./partials/header.ejs')%>
+    <!-- 이미지 마커 -->
+    <section class="section-map">
+        <div id="map"></div>
+        <section class="section-map-info">
+            <div class="container">
+                <div class="sub-container">
+                    <div class="flex-row">
+                        <img class="market-info-leaf" src="/img/left_leaf.png"/>
+                        <h3 id="market-name">
+                            스타벅스 숭실대입구점
+                        </h3> 
+                        <img class="market-info-leaf" src="/img/right_leaf.png"/>
+                    </div>
+                    <small id="market-describe">서울 동작구 싱도로 3547</small>
+                </div>
+                <div class="sub-container">
+                    <h4 id="market-number">매장 내 인원 : 12명</h4>
+                    <h4 id="market-density">밀집도 : 45%</h4>
+                </div>
+            </div>
+        </section>
+    </section>
+    <script>
+        /* MAP */
+        const startPosition = new naver.maps.LatLng(37.553956, 126.980346);
+        const map = new naver.maps.Map('map', {
+            center: startPosition,
+            zoom: 10
+        });
 
-<h1>Markets</h1>
+        /* get marget data from server */
+        let mapData = "<%=JSON.stringify(mapData)%>";
+        mapData = mapData.replaceAll('&#34;', '\"');
+        mapData = JSON.parse(mapData);
+        console.log(mapData);
+
+        /* marker */
+        const markers = [];
+        mapData.forEach((cur) => {
+            const { marketId, marketName, describe, maxNumber, approvedNumber, currentNumber, latitude, longtitude } = cur;
+            const density = currentNumber * 100.0 / approvedNumber;
+            console.log(density);
+            let iconImg;
+
+            if (density >= 70) {
+                iconImg = '/img/red_marker.png';
+            }
+            else if (density >= 50) {
+                iconImg = '/img/yellow_marker.png'
+            }
+            else {
+                iconImg = '/img/green_marker.png'
+            }
+
+            const markerOptions = {
+                position: new naver.maps.LatLng(parseFloat(latitude), parseFloat(longtitude)),
+                map: map,
+                icon: {
+                    url: iconImg,
+                    scaledSize: new naver.maps.Size(25, 34),
+                }
+            };
+
+            const marker = new naver.maps.Marker(markerOptions);
+            cur.density = density;
+            markers.push({ marker, market: cur });
+        })
+
+        /* market click handler */
+        const markerClickHandler = (cur) => {
+            const {marketName, describe, currentNumber, density} = cur;
+            $('#market-name').text(marketName)
+            $('#market-describe').text(describe)
+            $('#market-number').text(`매장 내 인원 : ${currentNumber}명`)
+            $('#market-density').text(`밀집도 : ${density}%`);
+
+            $('#map').css('height', '60vh');
+            $('.section-map-info').css('display', 'flex');
+            console.log(cur);
+        }
+
+        markers.forEach(({ marker, market }) => {
+            naver.maps.Event.addListener(marker, 'click', () => { markerClickHandler(market) });
+        })
 
 
-<%-include('./partials/footer.ejs')%>
+    </script>
+
+    </body>
+
+    </html>
+
+
+    <%-include('./partials/footer.ejs')%>

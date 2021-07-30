@@ -13,7 +13,6 @@ export class AuthController {
         private readonly userService: UserService
     ) { }
 
-
     @Get('/signin')
     async getSignin(@Session() session, @Res() res) {
         if (session.auth) {

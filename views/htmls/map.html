@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>map</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=x0kqu3bn78"></script>
+</head>
+<body>
+    <!-- 이미지 마커 -->
+    <div id="map" style="width:100%;height:400px;"></div>
+    <script>
+    var position = new naver.maps.LatLng(35.17982543369992, 129.07499499992576);
+
+    var map = new naver.maps.Map('map', {
+        center: position,
+        zoom: 17
+    });
+
+    var markerOptions = {
+        position: position.destinationPoint(0, 20),
+        map: map,
+        icon: {
+        url: '',
+        size: new naver.maps.Size(50, 52),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(25, 26)
+        }
+    };                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+    var marker = new naver.maps.Marker(markerOptions);
+    </script>
+
+</body>
+</html>

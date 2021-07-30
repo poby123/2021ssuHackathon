@@ -1,12 +1,33 @@
 <%-include('./partials/header.ejs')%>
 
-<h1>Market ADD</h1>
-<form action="/market/add" method="POST">
+<!-- <h1>Market ADD</h1> -->
+<!-- <form action="/market/add" method="POST">
     <input type="text" name="marketId" placeholder="marketId"/>
     <input type="text" name="marketName" placeholder="name"/>
     <input type="text" name="describe" placeholder="descb"/>
     <input type="text" name="maxNumber" placeholder="maxnum"/>
     <input type="submit" value="저장"/>
-</form>
+</form> -->
+<section class="title">
+    <img src="/img/logo_purple.png">
+</section>
+<section class="signup-business-section">
+    <div class="container">
+
+        <form action="/market/add" method="POST">
+            <p>업체 이름을 입력해주세요</p>
+            <input type="text" name="marketName" placeholder="이름" />
+            <p class="addition">사업자 등록 시 입력한 상호로 표기해주세요</p>
+            <br/>
+
+            <p>업체 주소를 입력해주세요</p>
+            <input type="address" name="describe" placeholder="주소" />
+            <input type="button" name="search" value="찾기" />
+            
+            <input type="submit" value="확인" class="submit-button" />
+
+        </form>
+    </div>
+</section>
 
 <%-include('./partials/footer.ejs')%>

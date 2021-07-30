@@ -27,24 +27,33 @@ export class MarketController {
         // console.log('query market id :', marketId);
 
         const findResult = await this.marketService.findAll();
-        // console.log('findResult : ', findResult);
+        console.log('findResult : ', findResult);
 
-        res.render('markets', { title: 'TEST TITLE' })
+        res.render('markets', { title: 'TEST TITLE', mapData: findResult })
     }
 
 
     @Get('/qr')
-    @Roles(RolesEnum.MARKET_USER)
-    @UseGuards(SessionGuard)
+    // @Roles(RolesEnum.MARKET_USER)
+    // @UseGuards(SessionGuard)
     getQR(@Res() res) {
         res.render('qr_scanner')
     }
 
 
+    @Post('/qr')
+    // @Roles(RolesEnum.MARKET_USER)
+    // @UseGuards(SessionGuard)
+    postQR(@Body() body, @Res() res) {
+        console.log(body);
+        console.log('qr data : ', body.user);
+        res.json({ sucess: true })
+    }
+
     @Get('/qrtest')
     // @Roles(RolesEnum.MARKET_USER)
     // @UseGuards(SessionGuard)
-    async postQR(@Req() req, @Res() res) {
+    async qrtest(@Req() req, @Res() res) {
         try {
 
             // const { marketId } = req.session;
@@ -62,8 +71,8 @@ export class MarketController {
 
 
     @Get('/add')
-    @Roles(RolesEnum.NORMAL_USER)
-    @UseGuards(SessionGuard)
+    // @Roles(RolesEnum.NORMAL_USER)
+    // @UseGuards(SessionGuard)
     getAdd(@Session() session, @Res() res) {
         res.render('market_add');
     }

@@ -1,6 +1,18 @@
 <%-include('./partials/header.ejs')%>
-
-<h1>QR Scanner</h1>
-
-
+<section class="qr-title">
+    <div class="container">
+        <h1>QR CODE</h1>
+        <p id="outputMessage">QR코드를 스캔해주세요</p>
+    </div>
+</section>
+<section class="qr-scanner-section">
+    <div class="container">
+        <div class="sub-container">
+            <img src="/img/scanner_border.png"/>
+            <canvas id="canvas"></canvas>    
+        </div>
+        <strong>기타</strong>
+    </div>
+</section>
+<script src="/js/myQR.js"></script>
 <%-include('./partials/footer.ejs')%>

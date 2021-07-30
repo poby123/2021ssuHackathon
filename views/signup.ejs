@@ -1,11 +1,23 @@
 <%-include('./partials/header.ejs')%>
 
-<h1>Signup</h1>
-<form action="/auth/signup" method="POST">
-    <input type="text" name="userId"/>
-    <input type="text" name="username"/>
-    <input type="password" name="password"/>
-    <input type="submit" value="제출"/>
-</form>
+<section class="title">
+    <img src="/img/logo_purple.png">
+</section>
+<section class="signin-section">
+    <div class="container">
+        <form action="/auth/signup" method="POST">
+            <p>아이디</p>
+            <input type="text" name="userId"/>
+
+            <p>이름</p>
+            <input type="text" name="username"/>
+
+            <p>비밀번호</p>
+            <input type="password" name="password"/>
+
+            <input type="submit" value="회원가입"/>
+        </form>
+    </div>
+</section>
 
 <%-include('./partials/footer.ejs')%>

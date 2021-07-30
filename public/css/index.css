@@ -1,0 +1,319 @@
+:root {
+  --main-color: rgb(95, 49, 196);
+  --dark-color: rgb(64, 45, 124);
+  --light-color: rgba(95 49 196, 0.5);
+  --deep-dark-color: rgb(84, 74, 78);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  display: inline;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+form {
+  width: 70vw;
+  max-width: 300px;
+}
+
+.dark-background {
+  background-color: var(--dark-color);
+}
+
+.title {
+  height: 20vh;
+  /* border: 1px solid red; */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title img {
+  height: 40px;
+}
+
+input[type='submit']:hover {
+  cursor: pointer;
+}
+
+/********************** INDEX *********************/
+.index-section {
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.index-section .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.index-section button {
+}
+
+/********************** SIGNIN *********************/
+.signin-section {
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.signin-section .container {
+  height: 70vh;
+
+  margin-left: auto;
+  margin-right: auto;
+  /* border: 1px solid blue; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-section .title {
+  text-align: center;
+}
+
+.signin-section p {
+  color: var(--main-color);
+}
+
+.signin-section input[type='text'],
+input[type='password'] {
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  width: 100%;
+  height: 3em;
+  padding-left: 1em;
+}
+
+.signin-section input[type='submit'] {
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  margin-top: 30px;
+
+  background-color: var(--main-color);
+  color: white;
+}
+
+/********************** BUISNESS SIGNUP *********************/
+
+.signup-business-section {
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.signup-business-section .container {
+  height: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 720px;
+  border: 1px solid blue;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-business-section .container form {
+}
+
+.signup-business-section .title {
+  text-align: center;
+}
+
+.signup-business-section .title img {
+  height: 50px;
+}
+
+.signup-business-section p {
+  color: rgb(95, 49, 196);
+}
+
+/*여기 value로 적어놓은 값이 작성할 때 그대로 남아있더라구요 ㅠㅠ
+글자를 적으면 바로 없어지게 부탁드립니다!!*/
+.signup-business-section input[type='text'],
+input[type='address'] {
+  border: 1px solid rgb(95, 49, 196);
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+
+  color: rgba(95, 49, 196, 0.5);
+  opacity: 0.5;
+  outline: none;
+}
+
+/*찾기 버튼 텍스트 입력 받는 곳 안에 넣고 싶어요*/
+.signup-business-section input[type='button'] {
+  border: 1px solid rgb(95, 49, 196);
+  border-radius: 5px;
+  width: 20%;
+  height: 30px;
+  margin-top: 10px;
+
+  background-color: rgb(95, 49, 196);
+  color: white;
+}
+
+/*확인 버튼 하단으로 내리고 싶어요 ㅠㅠ*/
+.signup-business-section input[type='submit'] {
+  border: 1px solid rgb(95, 49, 196);
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+
+  background-color: rgb(95, 49, 196);
+  color: white;
+}
+
+.signup-business-section .addition {
+  color: rgb(84, 74, 78);
+  font-size: 80%;
+  margin-bottom: 20px;
+}
+
+/********************** QR Scanner *********************/
+
+.qr-title {
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* border:1px solid red; */
+}
+
+.qr-title .container {
+  max-width: 200;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--main-color);
+  color: white;
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 20px;
+}
+
+.qr-scanner-section {
+  height: 70vh;
+}
+
+.qr-scanner-section .container {
+  height: 100%;
+  /* border: 1px solid blue; */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-scanner-section .container .sub-container {
+  /* border: 1px solid blue; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.qr-scanner-section #canvas {
+  z-index: 100;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+  margin-left: -250;
+  margin-top: 40;
+}
+
+.qr-scanner-section img {
+  width: 80vw;
+  max-width: 300px;
+  height: auto;
+
+  position: relative;
+  margin-left: -30;
+}
+
+/********************** MAP *********************/
+.section-map {
+  box-sizing: border-box;
+}
+
+.section-map #map {
+  margin: 0;
+  width: 100vw;
+  outline: none;
+  /* height: 60vh; */
+  height: 100vh;
+  border: 4px solid purple;
+  box-sizing: border-box;
+  /* overflow-y: hidden; */
+}
+
+.section-map-info {
+  min-height: 40vh;
+  display: none;
+  /* border: 1px solid blue; */
+
+  justify-content: center;
+  align-items: center;
+}
+
+.section-map .container {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  height: 30vh;
+  /* border: 1px solid red; */
+  /* min-width: 50vw; */
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+  align-items: center;
+}
+
+.section-map .sub-container {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.market-info-leaf {
+  width: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+}

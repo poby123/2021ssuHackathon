@@ -9,6 +9,6 @@ export class ViewAuthFilter implements ExceptionFilter {
         const response = ctx.getResponse<Response>();
         const status = exception.getStatus();
 
-        response.render('signin', { error: '잘못된 아이디 혹은 패스워드입니다.' });
+        response.render('index', { error: '잘못된 아이디 혹은 패스워드입니다.' });
     }
 }

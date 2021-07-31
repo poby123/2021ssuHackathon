@@ -301,7 +301,7 @@ input[type='password'] {
 }
 
 .admin-section .warn {
-  background-color: red;
+  background-color: rgb(255, 0, 0);
   color: white;
 }
 

@@ -20,11 +20,11 @@ import { AdminModule } from './admin/admin.module';
     TypeOrmModule.forRoot(
       {
         "type": "mysql",
-        "host": "localhost",
+        "host": process.env.dbhost || "localhost",
         "port": 3306,
-        "username": "root",
-        "password": "1234",
-        "database": "hack2021",
+        "username": process.env.dbusername || "root",
+        "password": process.env.dbpassword || "1234",
+        "database": process.env.dbdatabase || "hack2021",
         "entities": [User, Market, Board, UserMarket],
         "synchronize": true // production 에서는 false로 해야한다. 안 그러면 데이터가 날아갈 수 있다.
       }

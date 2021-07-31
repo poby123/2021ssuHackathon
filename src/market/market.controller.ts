@@ -40,6 +40,11 @@ export class MarketController {
     @UseGuards(SessionGuard)
     async postQR(@Session() session, @Body() body, @Res() res) {
         const user = await this.userService.findOneWith(body.user);
+        if (!user) {
+            res.status(HttpStatus.BAD_REQUEST).json({ sucess: false })
+            return;
+        }
+
         const market = await this.marketService.findOne(session.marketId);
 
         const updatedMarket = await this.userMarketService.saveRecord2(user, market);

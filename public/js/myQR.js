@@ -54,7 +54,7 @@ async function tick() {
     var code = jsQR(imageData.data, imageData.width, imageData.height, {
       inversionAttempts: 'dontInvert',
     });
-    if (code) {
+    if (code && code.data) {
       drawLine(
         code.location.topLeftCorner,
         code.location.topRightCorner,
@@ -76,7 +76,7 @@ async function tick() {
         '#FF3B58',
       );
 
-      outputMessage.innerText = '인증되었습니다.';
+      // outputMessage.innerText = '인증되었습니다.';
       //   outputMessage.hidden = true;
       //   outputData.parentElement.hidden = false;
       //   outputData.innerText = code.data;
@@ -85,10 +85,13 @@ async function tick() {
 
       try {
         const res = await sendData({ user: userCode });
+        outputMessage.innerText = '인증되었습니다.';
         await new Promise((resolve) => setTimeout(resolve, 2000)); // 3 sec
         console.log('result :', res);
       } catch (e) {
+        outputMessage.innerText = '인증에 실패했습니다.';
         console.log('error : ', e);
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // 3 sec
       } finally {
         outputMessage.innerText = 'QR코드를 스캔해주세요.';
       }

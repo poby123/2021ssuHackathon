@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2')
+      format('woff2'),
+    url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff')
+      format('woff');
+}
+
 :root {
   --main-color: rgb(95, 49, 196);
   --dark-color: rgb(64, 45, 124);
@@ -16,6 +26,13 @@ h5 {
 
 body {
   margin: 0;
+  font-family: 'LotteMartDream';
+  font-size: 15px;
+}
+
+button {
+  font-family: 'LotteMartDream';
+  font-size: 15px;
 }
 
 form {
@@ -81,6 +98,7 @@ button:hover {
 }
 
 .index-section a {
+  margin-top: 1em;
   color: white;
 }
 

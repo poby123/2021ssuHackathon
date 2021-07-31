@@ -23,16 +23,16 @@
     </section>
     <script>
         /* MAP */
-        const startPosition = new naver.maps.LatLng(37.553956, 126.980346);
+        const startPosition = new naver.maps.LatLng(37.496293, 126.957206);
         const map = new naver.maps.Map('map', {
             center: startPosition,
-            zoom: 10
+            zoom: 15
         });
 
         /* get marget data from server */
         let mapData = "<%=JSON.stringify(mapData)%>";
         mapData = mapData.replaceAll('&#34;', '\"');
-        mapData = JSON.parse(mapData);
+        mapData = JSON.parse(mapData);  
         console.log(mapData);
 
         /* marker */

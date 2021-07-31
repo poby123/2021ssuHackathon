@@ -38,9 +38,13 @@ export class MarketController {
     @Post('/qr')
     @Roles(RolesEnum.MARKET_USER)
     @UseGuards(SessionGuard)
-    postQR(@Body() body, @Res() res) {
-        console.log(body);
-        console.log('qr data : ', body.user);
+    async postQR(@Session() session, @Body() body, @Res() res) {
+        const user = await this.userService.findOneWith(body.user);
+        const market = await this.marketService.findOne(session.marketId);
+
+        const updatedMarket = await this.userMarketService.saveRecord2(user, market);
+        await this.marketService.saveMarket(updatedMarket);
+
         res.json({ sucess: true })
     }
 
@@ -81,11 +85,11 @@ export class MarketController {
         }
 
         const checkMarketExist = await this.marketService.findOne(marketInfo.marketId);
-        if(checkMarketExist){
+        if (checkMarketExist) {
             res.render('error', { errorCode: HttpStatus.BAD_REQUEST, errorMessage: '이미 있는 매장입니다.' });
             return;
         }
-        
+
         // 저장 로직
         await this.marketService.saveMarket(marketInfo);
         const savedMarket = await this.marketService.findOne(marketInfo.marketId);

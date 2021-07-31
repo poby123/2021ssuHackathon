@@ -28,11 +28,13 @@ body {
   margin: 0;
   font-family: 'LotteMartDream';
   font-size: 15px;
+  line-height: 1.5em;
 }
 
 button {
   font-family: 'LotteMartDream';
   font-size: 15px;
+  line-height: 1.5em;
 }
 
 form {

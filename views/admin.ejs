@@ -1,0 +1,41 @@
+<%-include('./partials/header.ejs')%>
+
+<section class="title dark-background">
+    <img src="/img/logo_white.png">
+</section>
+<section class="admin-section">
+    <div class="container">
+        <div class="flex-row">
+            <img class="market-info-leaf" src="/img/left_leaf.png"/>
+            <h3 id="market-name">
+                매장 목록
+            </h3> 
+            <img class="market-info-leaf" src="/img/right_leaf.png"/>
+        </div>
+    </div>
+    <div class="container min-height">
+        <%
+            allMarkets.forEach((market)=>{
+                if(market.approvedNumber < market.currentNumber){
+        %>
+            <div class="sub-container warn">
+        <%
+                } else{
+        %>
+            <div class="sub-container">
+        <%          
+                }
+        %>
+                <h4>사업자등록번호 : <%=market.marketId%></h4>
+                <h4>매장이름 : <%=market.marketName%></h4>
+                <h4>주소 : <%=market.address%></h4>
+                <h4>허용인원 : <%=market.approvedNumber%></h4>
+                <h4>현재인원 : <%=market.currentNumber%></h4>
+            </div>
+        <%
+            })
+        %>
+    </div>
+</section>
+
+<%-include('./partials/footer.ejs')%>

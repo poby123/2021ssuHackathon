@@ -13,7 +13,7 @@ import { UserMarketModule } from './user-market/user-market.module';
 import { BoardModule } from './board/board.module';
 import { Board } from './board/domain/board.entity';
 import { UserMarket } from './user-market/domain/user-market.entity';
-import { GovernmentModule } from './government/government.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -28,7 +28,7 @@ import { GovernmentModule } from './government/government.module';
         "entities": [User, Market, Board, UserMarket],
         "synchronize": true // production 에서는 false로 해야한다. 안 그러면 데이터가 날아갈 수 있다.
       }
-    ), AuthModule, UserModule, MarketModule, UserMarketModule, BoardModule, GovernmentModule],
+    ), AuthModule, UserModule, MarketModule, UserMarketModule, BoardModule, AdminModule],
   controllers: [AppController],
   providers: [AppService, { provide: APP_FILTER, useClass: HttpExceptionFilter }],
 })

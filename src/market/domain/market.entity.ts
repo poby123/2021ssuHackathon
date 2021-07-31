@@ -15,17 +15,17 @@ export class Market {
     @Column({ default: '' })
     describe?: string;
 
-    @Column()
-    maxNumber: number;
+    @Column({ default: 50 })
+    maxNumber?: number;
 
     @Column({ default: 0 })
     currentNumber?: number;
 
-    @Column()
+    @Column({ default: 5 })
     approvedNumber?: number;
 
     @Column({ nullable: true })
-    sido?: SiDoEnum;
+    address?: string;
 
     @Column({ nullable: true })
     longtitude?: string

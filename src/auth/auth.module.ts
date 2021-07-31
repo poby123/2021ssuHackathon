@@ -9,6 +9,6 @@ import { SessionGuard } from './roles-session.guard';
   imports: [UserModule],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, SessionGuard],
-  exports: [SessionGuard]
+  exports: [SessionGuard, AuthService]
 })
 export class AuthModule { }

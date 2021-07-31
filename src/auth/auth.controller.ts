@@ -35,7 +35,8 @@ export class AuthController {
         req.session.auth = auth;
         req.session.marketId = market && market.marketId;
 
-        res.redirect('/');
+        console.log(RolesDefaultRoutes[auth]);
+        res.redirect(RolesDefaultRoutes[auth])
     }
 
     @Get('/signout')

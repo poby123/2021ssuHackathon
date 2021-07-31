@@ -5,6 +5,7 @@ import { MarketService } from './market.service';
 import { MarketController } from './market.controller';
 import { UserModule } from 'src/user/user.module';
 import { UserMarketModule } from 'src/user-market/user-market.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Market]), UserModule, UserMarketModule],

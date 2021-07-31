@@ -1,9 +1,18 @@
 <%-include('./partials/header.ejs')%>
+<section class="title dark-background">
+    <img src="/img/logo_white.png">
+</section>
+<section class="error-section">
+    <div class="container">
+        <h1>ERROR <%=errorCode%></h1>
+        <p><%=errorMessage%></p>
 
-<h2>문제가 생겼어!</h2>
-<h3><%=errorCode%></h3>
-<p>
-    <%=errorMessage%>
-</p>
-
+        <button id="goBack">뒤로가기</button>
+    </div>
+</section>
+<script>
+    $('#goBack').click('onClick', ()=>{
+        window.history.back();
+    })
+</script>
 <%-include('./partials/footer.ejs')%>

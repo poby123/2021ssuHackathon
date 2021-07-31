@@ -37,10 +37,14 @@ form {
 }
 
 .title img {
-  height: 40px;
+  height: 30px;
 }
 
 input[type='submit']:hover {
+  cursor: pointer;
+}
+
+button:hover {
   cursor: pointer;
 }
 
@@ -53,11 +57,31 @@ input[type='submit']:hover {
 
 .index-section .container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  height: 90%;
+}
+
+.index-section .sub-container {
+  height: 100%;
+  margin-top: 15vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .index-section button {
+  border-radius: 5px;
+  width: 300;
+
+  font-size: large;
+  height: 60px;
+  color: rgba(95, 49, 196);
+  outline: none;
+}
+
+.index-section a {
+  color: white;
 }
 
 /********************** SIGNIN *********************/
@@ -68,7 +92,7 @@ input[type='submit']:hover {
 }
 
 .signin-section .container {
-  height: 70vh;
+  min-height: 70vh;
 
   margin-left: auto;
   margin-right: auto;
@@ -77,6 +101,7 @@ input[type='submit']:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10vh;
 }
 
 .signin-section .title {
@@ -105,88 +130,6 @@ input[type='password'] {
 
   background-color: var(--main-color);
   color: white;
-}
-
-/********************** BUISNESS SIGNUP *********************/
-
-.signup-business-section {
-  height: 70vh;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid red;
-}
-
-.signup-business-section .container {
-  height: 100%;
-
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 720px;
-  border: 1px solid blue;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.signup-business-section .container form {
-}
-
-.signup-business-section .title {
-  text-align: center;
-}
-
-.signup-business-section .title img {
-  height: 50px;
-}
-
-.signup-business-section p {
-  color: rgb(95, 49, 196);
-}
-
-/*여기 value로 적어놓은 값이 작성할 때 그대로 남아있더라구요 ㅠㅠ
-글자를 적으면 바로 없어지게 부탁드립니다!!*/
-.signup-business-section input[type='text'],
-input[type='address'] {
-  border: 1px solid rgb(95, 49, 196);
-  border-radius: 5px;
-  width: 100%;
-  height: 50px;
-  margin-top: 10px;
-
-  color: rgba(95, 49, 196, 0.5);
-  opacity: 0.5;
-  outline: none;
-}
-
-/*찾기 버튼 텍스트 입력 받는 곳 안에 넣고 싶어요*/
-.signup-business-section input[type='button'] {
-  border: 1px solid rgb(95, 49, 196);
-  border-radius: 5px;
-  width: 20%;
-  height: 30px;
-  margin-top: 10px;
-
-  background-color: rgb(95, 49, 196);
-  color: white;
-}
-
-/*확인 버튼 하단으로 내리고 싶어요 ㅠㅠ*/
-.signup-business-section input[type='submit'] {
-  border: 1px solid rgb(95, 49, 196);
-  border-radius: 5px;
-  width: 100%;
-  height: 50px;
-  margin-top: 20px;
-
-  background-color: rgb(95, 49, 196);
-  color: white;
-}
-
-.signup-business-section .addition {
-  color: rgb(84, 74, 78);
-  font-size: 80%;
-  margin-bottom: 20px;
 }
 
 /********************** QR Scanner *********************/
@@ -316,4 +259,86 @@ input[type='address'] {
 
   justify-content: space-between;
   align-items: center;
+}
+
+/********************** ADMIN *********************/
+.admin-section {
+  min-height: 70vh;
+  /* border: 1px solid red; */
+  /* justify-content: center; */
+}
+
+.admin-section .container {
+  margin-top: 2em;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid blue; */
+}
+
+.admin-section .warn {
+  background-color: red;
+  color: white;
+}
+
+.admin-section .sub-container {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--main-color);
+  border-radius: 20px;
+  margin-bottom: 1em;
+  width: 80%;
+  padding: 1em;
+}
+
+.admin-section .min-height {
+  min-height: 70vh;
+}
+
+/********************** ERROR *********************/
+
+.error-section{
+}
+
+.error-section .container{
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.error-section h1{
+  font-size: 36;
+}
+
+.error-section button{
+  background: none;
+  border: none;
+  font-size: 20;
+  text-decoration: underline;
+}
+
+/********************** FOOTER *********************/
+footer {
+  min-height: 10vh;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+footer a {
+  color: white;
+}
+
+footer .container {
+  max-width: 300px;
+  text-align: center;
 }

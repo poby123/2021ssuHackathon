@@ -11,19 +11,39 @@
 <section class="title">
     <img src="/img/logo_purple.png">
 </section>
-<section class="signup-business-section">
+<section class="signin-section">
     <div class="container">
-
         <form action="/market/add" method="POST">
-            <p>업체 이름을 입력해주세요</p>
-            <input type="text" name="marketName" placeholder="이름" />
-            <p class="addition">사업자 등록 시 입력한 상호로 표기해주세요</p>
+            <p>아이디</p>
+            <input type="text" name="userId" placeholder="사용할 아이디" required/>
+
+            <p>이름</p>
+            <input type="text" name="username" placeholder="관리자 이름" required/>
+
+            <p>비밀번호</p>
+            <input type="password" name="password" placeholder="비밀번호" required/>
             <br/>
 
+
+            <p>사업자등록번호를 입력해주세요</p>
+            <input type="text" name="marketId" placeholder="사업자 등록번호" required/>
+
+            <p>업체 이름을 입력해주세요</p>
+            <input type="text" name="marketName" placeholder="업체 이름" required/>
+            <small class="addition">사업자 등록 시 입력한 상호로 표기해주세요</small>
+
             <p>업체 주소를 입력해주세요</p>
-            <input type="address" name="describe" placeholder="주소" />
-            <input type="button" name="search" value="찾기" />
+            <input type="text" name="address" placeholder="주소" required/>
             
+            <p>업체 설명을 입력해주세요</p>
+            <input type="text" name="describe" placeholder="설명" required/>
+
+            <p>위도를 입력해주세요</p>
+            <input type="text" name="latitude" placeholder="latitude"/>
+
+            <p>경도를 입력해주세요</p>
+            <input type="text" name="longtitude" placeholder="longtitude"/>
+
             <input type="submit" value="확인" class="submit-button" />
 
         </form>

@@ -14,6 +14,10 @@ export class UserService {
   }
 
 
+  findOne(id: string): Promise<User[]> {
+    return this.userRepository.find({ userId: id });
+  }
+
   async findOneWith(id: string): Promise<User> {
     const result = await this.userRepository.find({ relations: ["market"] });
     const user = result.find((user: User) => {

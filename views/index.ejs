@@ -2,10 +2,20 @@
 <section class="title dark-background">
     <img src="/img/logo_white.png">
 </section>
-<section class="index-section">
+<section class="index-section dark-background">
     <div class="container">
-        <button class="linkto-signin">LOGIN</button>
-        <a class="link-to-signup" href="/auth/signup">SIGN UP</a>
+        <div class="sub-container">
+            <button id="linktologin">로그인</button>
+            <button id="linktomap">매장 밀집도 확인</button>
+            <br/>
+            <a href="/auth/signup">가입하기</a>
+            <a href="/market/add">사업자 등록하기</a>
+        </div>
+        <a href="#">개인정보 및 처리방침</a>
     </div>
 </section>
+<script>
+    $('#linktologin').click('onClick', () => {location.href="/auth/signin"});
+    $('#linktomap').click('onClick', () => {location.href="/market"});
+</script>
 <%-include('./partials/footer.ejs')%>

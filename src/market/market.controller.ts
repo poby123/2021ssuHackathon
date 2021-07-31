@@ -9,6 +9,7 @@ import { Market } from './domain/market.entity';
 import { MarketReqDTo } from './dto/marketReq.dto';
 import { MarketService } from './market.service';
 import { ViewAuthFilter } from '../exception/forbidden-view.filter';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 
 @Controller('market')
 export class MarketController {
@@ -20,30 +21,23 @@ export class MarketController {
     ) { }
 
     @Get()
-    // @Roles(RolesEnum.NORMAL_USER, RolesEnum.MARKET_USER, RolesEnum.GOVERNMENT, RolesEnum.ADMIN)
-    // @UseGuards(SessionGuard)
-    // @UseFilters(ViewAuthFilter)
-    async getMarkets(@Query('marketId') marketId, @Res() res) {
-        // console.log('query market id :', marketId);
-
-        const findResult = await this.marketService.findAll();
-        console.log('findResult : ', findResult);
-
-        res.render('markets', { title: 'TEST TITLE', mapData: findResult })
+    async getMarkets(@Res() res) {
+        const mapData = await this.marketService.findAll();
+        res.render('markets', { title: 'TEST TITLE', mapData })
     }
 
 
     @Get('/qr')
-    // @Roles(RolesEnum.MARKET_USER)
-    // @UseGuards(SessionGuard)
+    @Roles(RolesEnum.MARKET_USER)
+    @UseGuards(SessionGuard)
     getQR(@Res() res) {
         res.render('qr_scanner')
     }
 
 
     @Post('/qr')
-    // @Roles(RolesEnum.MARKET_USER)
-    // @UseGuards(SessionGuard)
+    @Roles(RolesEnum.MARKET_USER)
+    @UseGuards(SessionGuard)
     postQR(@Body() body, @Res() res) {
         console.log(body);
         console.log('qr data : ', body.user);
@@ -71,26 +65,35 @@ export class MarketController {
 
 
     @Get('/add')
-    // @Roles(RolesEnum.NORMAL_USER)
-    // @UseGuards(SessionGuard)
     getAdd(@Session() session, @Res() res) {
         res.render('market_add');
     }
 
     @Post('/add')
-    @Roles(RolesEnum.NORMAL_USER)
-    @UseGuards(SessionGuard)
-    async postAdd(@Session() session, @Body() dto: MarketReqDTo, @Res() res) {
-        const adminId = session.userId;
-        const admin = await this.userService.findOneWith(adminId);
-        if (!dto.approvedNumber) {
-            dto.approvedNumber = Math.floor(dto.maxNumber / 10);
-        }
-        console.log(dto);
-        const market: Market = { ...dto, admin }
+    async postAdd(@Body() dto: MarketReqDTo, @Res() res) {
+        const { userId, username, password, ...marketInfo } = dto;
 
-        await this.marketService.saveMarket(market);
-        const markets = await this.marketService.findAll();
-        console.log(markets);
+        try {
+            const checkExistId = await this.userService.findOne(userId);
+
+            // console.log(checkExistId);
+
+            if (checkExistId.length > 0) {
+                res.render('error', { errorCode: HttpStatus.BAD_REQUEST, errorMessage: '이미 있는 아이디입니다.' });
+                return;
+            }
+
+            // console.log(marketInfo);
+
+            await this.marketService.saveMarket(marketInfo);
+            const savedMarket = await this.marketService.findOne(marketInfo.marketId);
+
+            const admin = { userId, username, password, market: savedMarket, auth: RolesEnum.MARKET_USER };
+            await this.userService.saveUser(admin);
+
+            res.redirect('/');
+        } catch (e) {
+            res.render('error', { errorCode: HttpStatus.INTERNAL_SERVER_ERROR, errorMessage: e });
+        }
     }
 }

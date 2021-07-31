@@ -14,7 +14,7 @@ export class AppController {
   @UseGuards(SessionGuard)
   @UseFilters(ViewAuthFilter)
   index(@Req() req, @Res() res) {
-    if (req.session.auth !== RolesEnum.NORMAL_USER) {
+    if (req.session.auth) {
       res.redirect(RolesDefaultRoutes[req.session.auth])
     } else {
       res.render('index', { title: 'TEST TITLE' })

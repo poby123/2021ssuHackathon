@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, Res, Session, UseFilters, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Post, Req, Res, Session, UseFilters, UseGuards } from '@nestjs/common';
 import { ViewAuthFilter } from 'src/exception/forbidden-view.filter';
 import { User } from 'src/user/domain/user.entity';
 import { SignupRequestDto } from 'src/user/dto/signupreq.dto';
@@ -55,13 +55,17 @@ export class AuthController {
     }
 
     @Post('/signup')
-    postSignup(@Body() signupReqDto: SignupRequestDto, @Res() res) {
+    async postSignup(@Body() signupReqDto: SignupRequestDto, @Res() res) {
         const { userId, password, username } = signupReqDto;
-        console.log(signupReqDto);
 
+        // 중복체크로직
+        const overlap = await this.userService.findOne(userId);
+        if (overlap.length > 0) {
+            throw new HttpException('이미 존재하는 아이디입니다', HttpStatus.BAD_REQUEST);
+        }
 
         const user: User = { userId, password, username }
-        this.userService.saveUser(user);
+        await this.userService.saveUser(user);
 
         res.redirect('/auth/signin');
     }

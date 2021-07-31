@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './domain/user.entity';
 import { Repository } from 'typeorm/index';
@@ -30,6 +30,9 @@ export class UserService {
   }
 
   async saveUser(user: User): Promise<void> {
+    if (!user.userId || !user.username || !user.password) {
+      throw new HttpException('필수 필드가 비어있습니다', HttpStatus.BAD_REQUEST);
+    }
     await this.userRepository.save(user);
   }
 

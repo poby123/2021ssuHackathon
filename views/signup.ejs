@@ -7,13 +7,13 @@
     <div class="container">
         <form action="/auth/signup" method="POST">
             <p>아이디</p>
-            <input type="text" name="userId"/>
+            <input type="text" name="userId" required/>
 
             <p>이름</p>
-            <input type="text" name="username"/>
+            <input type="text" name="username" required/>
 
             <p>비밀번호</p>
-            <input type="password" name="password"/>
+            <input type="password" name="password" required/>
 
             <input type="submit" value="회원가입"/>
         </form>

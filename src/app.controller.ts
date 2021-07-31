@@ -10,9 +10,6 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get()
-  @Roles(RolesEnum.NORMAL_USER, RolesEnum.MARKET_USER, RolesEnum.GOVERNMENT, RolesEnum.ADMIN)
-  @UseGuards(SessionGuard)
-  @UseFilters(ViewAuthFilter)
   index(@Req() req, @Res() res) {
     if (req.session.auth) {
       res.redirect(RolesDefaultRoutes[req.session.auth])

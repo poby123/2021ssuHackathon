@@ -26,7 +26,7 @@ import { AdminModule } from './admin/admin.module';
         "password": process.env.dbpassword || "1234",
         "database": process.env.dbdatabase || "hack2021",
         "entities": [User, Market, Board, UserMarket],
-        "synchronize": true // production 에서는 false로 해야한다. 안 그러면 데이터가 날아갈 수 있다.
+        "synchronize": false // production 에서는 false로 해야한다. 안 그러면 데이터가 날아갈 수 있다.
       }
     ), AuthModule, UserModule, MarketModule, UserMarketModule, BoardModule, AdminModule],
   controllers: [AppController],

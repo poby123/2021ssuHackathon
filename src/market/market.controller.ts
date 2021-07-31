@@ -73,27 +73,26 @@ export class MarketController {
     async postAdd(@Body() dto: MarketReqDTo, @Res() res) {
         const { userId, username, password, ...marketInfo } = dto;
 
-        try {
-            const checkExistId = await this.userService.findOne(userId);
-
-            // console.log(checkExistId);
-
-            if (checkExistId.length > 0) {
-                res.render('error', { errorCode: HttpStatus.BAD_REQUEST, errorMessage: '이미 있는 아이디입니다.' });
-                return;
-            }
-
-            // console.log(marketInfo);
-
-            await this.marketService.saveMarket(marketInfo);
-            const savedMarket = await this.marketService.findOne(marketInfo.marketId);
-
-            const admin = { userId, username, password, market: savedMarket, auth: RolesEnum.MARKET_USER };
-            await this.userService.saveUser(admin);
-
-            res.redirect('/');
-        } catch (e) {
-            res.render('error', { errorCode: HttpStatus.INTERNAL_SERVER_ERROR, errorMessage: e });
+        // 중복 체크 로직 : 나중에 service 계층으로 이동시키기
+        const checkUserExist = await this.userService.findOne(userId);
+        if (checkUserExist.length > 0) {
+            res.render('error', { errorCode: HttpStatus.BAD_REQUEST, errorMessage: '이미 있는 아이디입니다.' });
+            return;
         }
+
+        const checkMarketExist = await this.marketService.findOne(marketInfo.marketId);
+        if(checkMarketExist){
+            res.render('error', { errorCode: HttpStatus.BAD_REQUEST, errorMessage: '이미 있는 매장입니다.' });
+            return;
+        }
+        
+        // 저장 로직
+        await this.marketService.saveMarket(marketInfo);
+        const savedMarket = await this.marketService.findOne(marketInfo.marketId);
+
+        const admin = { userId, username, password, market: savedMarket, auth: RolesEnum.MARKET_USER };
+        await this.userService.saveUser(admin);
+
+        res.redirect('/auth/signin');
     }
 }

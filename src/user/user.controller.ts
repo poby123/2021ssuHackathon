@@ -12,7 +12,7 @@ export class UserController {
     @UseGuards(SessionGuard)
     @UseFilters(ViewAuthFilter)
     async getUser(@Session() session, @Res() res) {
-        res.render('userIndex');
+        res.render('userIndex', { userId: session.userId });
     }
 
 }

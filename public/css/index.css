@@ -199,6 +199,26 @@ input[type='password'] {
   margin-left: -30;
 }
 
+/********************** QR Scanner *********************/
+.qrcode-generator-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-scanner-section #qrcode {
+  width: 150px;
+  height: 150px;
+}
+
+.qrcode-generator-section .container {
+  display: flex;
+  min-height: 70vh;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
 /********************** MAP *********************/
 .section-map {
   box-sizing: border-box;
@@ -302,10 +322,10 @@ input[type='password'] {
 
 /********************** ERROR *********************/
 
-.error-section{
+.error-section {
 }
 
-.error-section .container{
+.error-section .container {
   min-height: 70vh;
   display: flex;
   flex-direction: column;
@@ -314,11 +334,11 @@ input[type='password'] {
   align-items: center;
 }
 
-.error-section h1{
+.error-section h1 {
   font-size: 36;
 }
 
-.error-section button{
+.error-section button {
   background: none;
   border: none;
   font-size: 20;

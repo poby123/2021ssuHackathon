@@ -22,6 +22,9 @@ navigator.mediaDevices
     video.setAttribute('playsinline', true); // required to tell iOS safari we don't want fullscreen
     video.play();
     requestAnimationFrame(tick);
+  })
+  .catch((e) => {
+    console.log('error : ', e);
   });
 
 function sendData(target) {

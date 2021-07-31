@@ -1,4 +1,29 @@
 <%-include('./partials/header.ejs')%>
-<h1>This is index page</h1>
-<a href="/auth/signout">로그아웃</a>
+
+<section class="title dark-background">
+    <img src="/img/logo_white.png">
+</section>
+<section class="qrcode-generator-section">
+    <div class="container">
+        <div id="qrcode"></div>
+        <a href="/market">주변 매장 혼잡도 검색</a>
+    </div>
+</section>
+<script type="text/javascript" src="/js/qrcode-generator.js"></script>
+<script>
+    const qrcode = new QRCode(document.getElementById('qrcode'), {
+        width: 150,
+        height: 150,
+    });
+
+    /* get marget data from server */
+    let user = "<%=JSON.stringify(userId)%>";
+    user = user.replaceAll('&#34;', '\"');
+    console.log(user);
+
+    user = JSON.parse(user);
+    console.log(user);
+
+    qrcode.makeCode(user);
+</script>
 <%-include('./partials/footer.ejs')%>
